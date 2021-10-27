@@ -1,0 +1,331 @@
+---
+title: "The New Roads Leading to Shiny Nirvana"
+subtitle: "R/Pharma 2021"
+author: Eric Nantz
+date: "2021-11-04"
+output:
+  xaringan::moon_reader:
+    lib_dir: assets/libs
+    css: 
+      - assets/css/xaringan-themer.css
+      - assets/css/my-theme.css
+      - assets/css/my-fonts.css
+    includes:
+      after_body: "afterInit.html"
+    seal: false
+    anchor_sections: false
+    self_contained: false
+    nature:
+      slideNumberFormat: "%current%"
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE, width = 70)
+
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.show = FALSE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+# style_duo_accent(
+#   primary_color = "#1381B0",
+#   secondary_color = "#FF961C",
+#   inverse_header_color = "#FFFFFF"
+# )
+style_mono_light(
+  base_color = "#23395b",
+  colors = c(
+    red = "#f34213",
+    purple = "#3e2f5b",
+    orange = "#ff8811",
+    green = "#136f63",
+    white = "#FFFFFF"
+  )
+)
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+class: title-slide, right, middle
+background-image: url("assets/images/road_mountain.jpg")
+background-position: center
+background-size: cover
+
+<style>
+div.transbox {
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+
+div.transbox h1 {
+  color: #000000;
+}
+
+div.transbox h2 {
+  color: #000000;
+}
+
+div.transbox h3 {
+  color: #000000;
+}
+
+div.transbox h4 {
+  color: #000000;
+}
+</style>
+
+<img src="assets/images/engineering_shiny.jpg" style="position:absolute;top:70%;left:21%;width:100px;height:150px;">
+
+<img src="assets/images/mastering-shiny-cover.png" style="position:absolute;top:65%;left:37%;width:100px;height:140px;">
+
+<img src="assets/images/shinymobile.png" style="position:absolute;top:40%;left:21%;width:100px;height:150px;">
+
+<img src="assets/images/javascript_r.jpg" style="position:absolute;top:30%;left:40%;width:100px;height:150px;">
+
+.pull-right[
+.transbox[
+# `r rmarkdown::metadata$title`
+
+## `r rmarkdown::metadata$subtitle`
+
+### `r rmarkdown::metadata$author`
+
+### `r rmarkdown::metadata$date`
+
+### Slides available at [bit.ly/rph2021shiny](https://bit.ly/rph2021shiny)
+]
+]
+
+---
+name: introbkg
+class: center, middle
+background-image: url("assets/images/sci-fi-wallpaper.jpg")
+background-size: cover
+
+---
+name: hello
+template: introbkg
+class: middle, center
+
+# .white[Eric Nantz]
+
+<img style="border-radius: 50%;" src="https://shinydevseries.com/authors/admin/avatar_hua4a00d50a7ec149987a9868c9870fbe4_2111194_270x270_fill_q90_lanczos_center.jpg" width="200px"/>
+
+<style>
+.link-box {
+  background-color: #caeded;
+  font-size: 8em;
+  width: 50%;
+}
+</style>
+
+.link-box[
+[`r icons::fontawesome("github")` @rpodcast](https://github.com/rpodcast)  
+[`r icons::fontawesome("twitter")` @theRcast](https://twitter.com/thercast)  
+[`r icons::fontawesome("link")` r-podcast.org](https://r-podcast.org)  
+[`r icons::fontawesome("link")` shinydevseries.com](https://shinydevseries.com)  
+[`r icons::fontawesome("link")` rweekly.org](https://rweekly.org)  
+]
+
+---
+class: middle, center
+
+<iframe frameborder=0 src="https://shiny.rstudio.com/gallery/#user-showcase" style="position:absolute;top:0.55%;left:0.46%;width:1200px;height:600px;"></iframe>
+
+---
+class: middle, center, inverse
+
+# In the early days...
+
+---
+background-image: url("assets/images/monitor.png")
+background-size: 70%
+
+<img src="assets/images/shiny-mailing-list.png" style="position:absolute;top:3.55%;left:17.3%;width:788.33px;height:490px;">
+
+---
+
+# On the other side of the screen...
+
+.pull-left[
+<img src="assets/images/kevin-flynn-tron.jpg">
+]
+
+.pull-right[
+* Amazing possibilities with Shiny apps (many from R/Pharma!)
+* But ... 
+* How can I go from a prototype to __those__ applications?
+* Do I need to become a full-fledged web developer?
+]
+
+.center[
+### The Power is Within Reach
+]
+
+---
+layout: false
+
+<div id="my_video">
+<video width="100%" height="100%" autoplay>
+    <source src="assets/videos/rmpharma_demo_final.mp4" type="video/mp4">
+</video>
+</div>
+
+
+---
+class: middle
+background-image: url("assets/images/engineering_shiny.jpg")
+background-position: left
+background-size: 40% 90%
+
+<div style="position:absolute;top:95%;left:10%;width:500px;height:100px;">
+<a href="https://engineering-shiny.org">engineering-shiny.org</a>
+</div>
+
+.pull-right[
+## Engineering Production-Grade Shiny Apps
+
+### Colin Fay, Sebastien Rochette, Vincent Guyader, Cervan Girard
+* Trust the Process (of robust Shiny development)
+* Embrace the software mindset by using [`{golem}`](https://thinkr-open.github.io/golem/)
+* Logical workflow to build apps piece by piece
+]
+
+---
+class: middle
+background-image: url("assets/images/mastering-shiny-cover.png")
+background-position: left
+background-size: 40% 90%
+
+<div style="position:absolute;top:95%;left:10%;width:500px;height:100px;">
+<a href="https://mastering-shiny.org/">mastering-shiny.org</a>
+</div>
+
+.pull-right[
+## Mastering Shiny
+
+### Hadley Wickham
+
+* Balanced approach of practical examples and fundamentals
+* Demystifying the _magic_ of reactivity
+* Reinforces powerful techniques for general R development
+]
+
+---
+
+### Tidy Evaluation within Shiny
+
+.panelset[
+.panel[.panel-name[Shiny App]
+![](assets/images/dplyr.png)
+]
+
+.panel[.panel-name[UI Code]
+```r
+ui <- fluidPage(
+  selectInput("var", "Sort by", choices = names(mtcars)),
+  checkboxInput("desc", "Descending order?"),
+  tableOutput("data")
+)
+```
+]
+
+.panel[.panel-name[Server Code]
+```r
+server <- function(input, output, session) {
+  sorted <- reactive({
+    if (input$desc) {
+      arrange(mtcars, desc(.data[[input$var]]))
+    } else {
+      arrange(mtcars, .data[[input$var]])
+    }
+  })
+  output$data <- renderTable(sorted())
+}
+```
+
+]
+]
+---
+class:middle
+
+<!-- style="position:absolute;top:0.55%;left:0.46%;width:600px;height:650px;" -->
+<iframe frameborder=0 src="https://unleash-shiny.rinterface.com/mobile-pwa.html" style="position:absolute;top:0.55%;left:0.46%;width:600px;height:600px;"></iframe>
+
+<div style="position:absolute;top:90%;left:10%;width:500px;height:100px;">
+<a href="https://unleash-shiny.rinterface.com">unleash-shiny.rinterface.com</a>
+</div>
+
+.pull-right[
+## Outstanding User Interfaces with Shiny
+
+### David Granjon
+
+* Connects important relationships between Shiny and web technologies
+* Recipes for creating custom UI templates
+* Uncovers the virtual JavaScript links between inputs and server sessions
+]
+
+---
+
+### Powerful theming with {bslib}
+
+.panelset[
+.panel[.panel-name[Shiny App]
+![](assets/images/hotshots.png)
+]
+
+.panel[.panel-name[Theme code]
+```r
+my_theme <- bs_theme(
+    bg = "#0090f9", 
+    fg = "#f0f0e6", 
+    primary = "#71cc65", 
+    base_font = font_google("Oswald", local = FALSE),
+    "font-size-base" = "1.1rem"
+  )
+```
+]
+
+.panel[.panel-name[Within UI]
+```r
+fluidPage(
+      theme = my_theme,
+      ...
+)
+```
+
+]
+]
+
+---
+
+## The Destination is within reach!
+
+* Unlike the early days, comprehensive resources are now available to bring you closer to your Shiny Nirvana!
+* Even more resources ...
+    + Shiny App Stories [shiny.rstudio.com/app-stories](https://shiny.rstudio.com/app-stories/)
+    + Shiny Developer Series [shinydevseries.com](https://shinydevseries.com)
+    + 
+
