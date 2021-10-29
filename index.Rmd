@@ -36,7 +36,26 @@ knitr::opts_chunk$set(
   fig.show = FALSE,
   hiline = TRUE
 )
+
+footer_spacing <- function(left_spaces = 20, 
+                           right_spaces = 8,
+                           center_title = "R/Pharma 2021",
+                           right_title = "github.com/rpodcast/rph2021_shinynirvana",
+                           left_title = "bit.ly/rph2021shiny", 
+                           footer_class = "my-footer") {
+  footer_content <- paste0(left_title, paste(rep("&emsp", left_spaces), collapse=";"), ";", center_title, paste(rep("&emsp", right_spaces), collapse=";"),  ";", right_title)
+  glue::glue('<div class="{footer_class}"><span>{footer_content}</span></div>')
+}
+
+
 ```
+
+
+layout: true
+
+`r footer_spacing(left_spaces = 30, right_spaces = 20)`
+
+---
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
@@ -117,20 +136,20 @@ div.transbox h4 {
 ]
 ]
 
+
 ---
 name: introbkg
 class: center, middle
-background-image: url("assets/images/sci-fi-wallpaper.jpg")
-background-size: cover
+
 
 ---
 name: hello
 template: introbkg
 class: middle, center
 
-# .white[Eric Nantz]
+# .black[Hello!]
 
-<img style="border-radius: 50%;" src="https://shinydevseries.com/authors/admin/avatar_hua4a00d50a7ec149987a9868c9870fbe4_2111194_270x270_fill_q90_lanczos_center.jpg" width="200px"/>
+<img style="border-radius: 20%;" src="https://shinydevseries.com/authors/admin/avatar_hua4a00d50a7ec149987a9868c9870fbe4_2111194_270x270_fill_q90_lanczos_center.jpg" width="200px"/>
 
 <style>
 .link-box {
@@ -176,11 +195,11 @@ background-size: 70%
 * Amazing possibilities with Shiny apps (many from R/Pharma!)
 * But ... 
 * How can I go from a prototype to __those__ applications?
-* Do I need to become a full-fledged web developer?
+* Is it possible without switching careers to a full time web developer?
 ]
 
 .center[
-### The Power is Within Reach
+## The Power is Within Reach!
 ]
 
 ---
@@ -207,7 +226,7 @@ background-size: 40% 90%
 ## Engineering Production-Grade Shiny Apps
 
 ### Colin Fay, Sebastien Rochette, Vincent Guyader, Cervan Girard
-* Trust the Process (of robust Shiny development)
+* __Trust the Process__ (of robust Shiny development)
 * Embrace the software mindset by using [`{golem}`](https://thinkr-open.github.io/golem/)
 * Logical workflow to build apps piece by piece
 ]
@@ -234,7 +253,7 @@ background-size: 40% 90%
 
 ---
 
-### Tidy Evaluation within Shiny
+## Tidy Evaluation within Shiny
 
 .panelset[
 .panel[.panel-name[Shiny App]
@@ -289,7 +308,7 @@ class:middle
 
 ---
 
-### Powerful theming with {bslib}
+## Powerful theming with {bslib}
 
 .panelset[
 .panel[.panel-name[Shiny App]
@@ -315,7 +334,149 @@ fluidPage(
       ...
 )
 ```
+]
+]
 
+---
+class: middle
+background-image: url("assets/images/javascript_r.jpg")
+background-position: left
+background-size: 35% 90%
+
+<div style="position:absolute;top:95%;left:10%;width:500px;height:100px;">
+<a href="https://book.javascript-for-r.com">book.javascript-for-r.com</a>
+</div>
+
+.pull-right[
+## Javascript for R
+
+### John Coene
+* Uncovers the engine behind HTML widgets powered by Javascript
+* Comprehensive drilldowns of practical use cases inside and outside of Shiny
+* Next generation of creating your own widget with [`{packer}`](https://packer.john-coene.com)
+]
+
+---
+
+```{css, echo = FALSE}
+.flag {
+    margin-right: 8px;
+    height: 21px;
+    border: 1px solid #f0f0f0;
+}
+```
+
+```{r, echo=FALSE}
+library(dplyr)
+library(plotly)
+library(reactable)
+library(htmltools)
+library(crosstalk)
+
+df_overall <- readRDS("data/df_overall.rds")
+
+df_tmp <- readRDS("data/df_chart.rds") %>%
+  select(player_name, plot_emoji2) %>%
+  distinct()
+
+df <- left_join(df_overall, df_tmp, by = "player_name") %>%
+  select(position_emo, player_name, country, url, n_top3, total_points, avg_margin_victory, avg_time_from_first, n_first_race, plot_emoji2)
+
+shared_df <- SharedData$new(df)
+
+p1 <- plot_ly(shared_df, x = ~n_top3, y = ~total_points) %>%
+  highlight(on = "plotly_selected") %>%
+  add_text(
+    text = ~plot_emoji2,
+    hovertext = ~player_name,
+    hoverinfo = "text",
+    size = I(30)
+  ) %>%
+  layout(
+    yaxis = list(title = "Grand Prix Points"),
+    xaxis = list(title = "Number of Top 3 Finishes"),
+    font = list(size = 16)
+  )
+
+t1 <- reactable(
+  shared_df,
+  selection = "multiple",
+  onClick = "select",
+  columns = list(
+    position_emo = colDef(
+      name = "",
+      width = 30,
+      cell = function(value, index) {
+        emo_val <- dplyr::slice(df, index) %>% dplyr::pull(position_emo)
+        emo::ji(emo_val)
+      }
+    ),
+    player_name = colDef(
+      name = "Player",
+      width = 160
+      # cell = function(value, index) {
+      #   # grab appropriate record from country flag data frame
+      #   country_select <- dplyr::slice(df, index) %>% dplyr::pull(country)
+      #   country_url <- dplyr::slice(df, index) %>% dplyr::pull(url)
+      #   div(img(class = "flag", src = country_url), value)
+      # }})
+    ),
+    country = colDef(show = FALSE),
+    url = colDef(show = FALSE),
+    n_top3 = colDef(show = FALSE),
+    total_points = colDef(name = "Points", width = 100),
+    avg_margin_victory = colDef(
+      name = "Avg Margin of Victory",
+      cell = function(value, index) {
+        avg_margin_victory <- dplyr::slice(df, index) %>% dplyr::pull(avg_margin_victory) %>% round(., 3)
+        n_first_race <- dplyr::slice(df, index) %>% dplyr::pull(n_first_race)
+        
+        if (n_first_race < 1) {
+          res <- "No wins"
+        } else {
+          win_text <- ifelse(n_first_race < 2, "win", "wins")
+          res <- glue::glue("{avg_margin_victory} ({n_first_race} {win_text})")
+        }
+        
+        return(res)
+      }
+    ),
+    avg_time_from_first = colDef(show = FALSE),
+    #avg_time_from_first = colDef(name = "Avg Time Behind First", width = 100, format = colFormat(digits = 3)),
+    n_first_race = colDef(show = FALSE),
+    plot_emoji2 = colDef(show = FALSE)
+  )
+)
+```
+
+
+.panelset[
+.panel[.panel-name[Outside]
+```{r echo=FALSE}
+div(
+  div(p1, style="float:left;width:46%"),
+  div(t1, style="float:right;width:52%")
+)
+```
+]
+
+.panel[.panel-name[Inside]
+```{r, echo=TRUE, eval=FALSE}
+library(crosstalk)
+library(reactable)
+library(plotly)
+library(htmltools)
+
+shared_df <- SharedData$new(df)
+
+p1 <- create_plot(shared_df, ...)
+t1 <- create_reactable(shared_df, ...)
+
+div(
+  div(p1, style="float:left;width:46%"),
+  div(t1, style="float:right;width:52%")
+)
+```
 ]
 ]
 
@@ -323,9 +484,15 @@ fluidPage(
 
 ## The Destination is within reach!
 
-* Unlike the early days, comprehensive resources are now available to bring you closer to your Shiny Nirvana!
-* Even more resources ...
-    + Shiny App Stories [shiny.rstudio.com/app-stories](https://shiny.rstudio.com/app-stories/)
-    + Shiny Developer Series [shinydevseries.com](https://shinydevseries.com)
-    + 
+.pull-left[
+<img src="assets/images/road_rainbow.jpg">
+]
 
+.pull-right[
+
+* Unlike the early days, comprehensive resources are now available to bring you closer to Shiny Nirvana!
+* Additional Resources
+    + [shiny.rstudio.com/app-stories](https://shiny.rstudio.com/app-stories/)
+    + [shinydevseries.com](https://shinydevseries.com)
+    + [hosting.analythium.io](https://hosting.analythium.io/)
+]

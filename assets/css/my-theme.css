@@ -426,3 +426,20 @@ hr {
   min-height: 100%;
   width: 100%;
 }
+
+div.my-footer {
+  background-color: #1a1917;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 20px;
+  width: 100%;
+}
+
+div.my-footer span {
+  font-size: 10pt;
+  color: #F7F8FA;
+  position: absolute;
+  left: 15px;
+  bottom: 1.8px; /* was 2px */
+}

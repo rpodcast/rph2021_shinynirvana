@@ -5,9 +5,21 @@
     <meta charset="utf-8" />
     <meta name="author" content="Eric Nantz" />
     <meta name="date" content="2021-11-04" />
-    <script src="assets/libs/header-attrs/header-attrs.js"></script>
     <link href="assets/libs/panelset/panelset.css" rel="stylesheet" />
     <script src="assets/libs/panelset/panelset.js"></script>
+    <script src="assets/libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="assets/libs/plotly-binding/plotly.js"></script>
+    <script src="assets/libs/typedarray/typedarray.min.js"></script>
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <link href="assets/libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="assets/libs/crosstalk/js/crosstalk.min.js"></script>
+    <link href="assets/libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="assets/libs/plotly-main/plotly-latest.min.js"></script>
+    <script src="assets/libs/core-js/shim.min.js"></script>
+    <script src="assets/libs/react/react.min.js"></script>
+    <script src="assets/libs/react/react-dom.min.js"></script>
+    <script src="assets/libs/reactwidget/react-tools.js"></script>
+    <script src="assets/libs/reactable-binding/reactable.js"></script>
     <link rel="stylesheet" href="assets/css/xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/my-theme.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/my-fonts.css" type="text/css" />
@@ -17,6 +29,13 @@
 
 
 
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;bit.ly/rph2021shiny&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;R/Pharma 2021&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;github.com/rpodcast/rph2021_shinynirvana&lt;/span&gt;&lt;/div&gt;
+
+---
 
 
 
@@ -78,20 +97,20 @@ div.transbox h4 {
 ]
 ]
 
+
 ---
 name: introbkg
 class: center, middle
-background-image: url("assets/images/sci-fi-wallpaper.jpg")
-background-size: cover
+
 
 ---
 name: hello
 template: introbkg
 class: middle, center
 
-# .white[Eric Nantz]
+# .black[Hello!]
 
-&lt;img style="border-radius: 50%;" src="https://shinydevseries.com/authors/admin/avatar_hua4a00d50a7ec149987a9868c9870fbe4_2111194_270x270_fill_q90_lanczos_center.jpg" width="200px"/&gt;
+&lt;img style="border-radius: 20%;" src="https://shinydevseries.com/authors/admin/avatar_hua4a00d50a7ec149987a9868c9870fbe4_2111194_270x270_fill_q90_lanczos_center.jpg" width="200px"/&gt;
 
 &lt;style&gt;
 .link-box {
@@ -137,11 +156,11 @@ background-size: 70%
 * Amazing possibilities with Shiny apps (many from R/Pharma!)
 * But ... 
 * How can I go from a prototype to __those__ applications?
-* Do I need to become a full-fledged web developer?
+* Is it possible without switching careers to a full time web developer?
 ]
 
 .center[
-### The Power is Within Reach
+## The Power is Within Reach!
 ]
 
 ---
@@ -168,7 +187,7 @@ background-size: 40% 90%
 ## Engineering Production-Grade Shiny Apps
 
 ### Colin Fay, Sebastien Rochette, Vincent Guyader, Cervan Girard
-* Trust the Process (of robust Shiny development)
+* __Trust the Process__ (of robust Shiny development)
 * Embrace the software mindset by using [`{golem}`](https://thinkr-open.github.io/golem/)
 * Logical workflow to build apps piece by piece
 ]
@@ -195,7 +214,7 @@ background-size: 40% 90%
 
 ---
 
-### Tidy Evaluation within Shiny
+## Tidy Evaluation within Shiny
 
 .panelset[
 .panel[.panel-name[Shiny App]
@@ -250,7 +269,7 @@ class:middle
 
 ---
 
-### Powerful theming with {bslib}
+## Powerful theming with {bslib}
 
 .panelset[
 .panel[.panel-name[Shiny App]
@@ -276,7 +295,73 @@ fluidPage(
       ...
 )
 ```
+]
+]
 
+---
+class: middle
+background-image: url("assets/images/javascript_r.jpg")
+background-position: left
+background-size: 35% 90%
+
+&lt;div style="position:absolute;top:95%;left:10%;width:500px;height:100px;"&gt;
+&lt;a href="https://book.javascript-for-r.com"&gt;book.javascript-for-r.com&lt;/a&gt;
+&lt;/div&gt;
+
+.pull-right[
+## Javascript for R
+
+### John Coene
+* Uncovers the engine behind HTML widgets powered by Javascript
+* Comprehensive drilldowns of practical use cases inside and outside of Shiny
+* Next generation of creating your own widget with [`{packer}`](https://packer.john-coene.com)
+]
+
+---
+
+&lt;style type="text/css"&gt;
+.flag {
+    margin-right: 8px;
+    height: 21px;
+    border: 1px solid #f0f0f0;
+}
+&lt;/style&gt;
+
+
+
+
+.panelset[
+.panel[.panel-name[Outside]
+<div>
+<div style="float:left;width:46%">
+<div id="htmlwidget-146cb5dad3b14f19fb94" style="width:100%;height:400px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-146cb5dad3b14f19fb94">{"x":{"visdat":{"2f3363de84c":["function () ","plotlyVisDat"]},"cur_data":"2f3363de84c","attrs":{"2f3363de84c":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"text":{},"type":"scatter","mode":"text","hovertext":{},"hoverinfo":"text","size":[30],"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"yaxis":{"domain":[0,1],"automargin":true,"title":"Grand Prix Points"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Number of Top 3 Finishes"},"font":{"size":16},"dragmode":"select","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_selected","off":"plotly_deselect","persistent":false,"dynamic":false,"color":null,"selectize":false,"defaultValues":null,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedDatafa3ac8b3"]},"data":[{"x":[27,21,23,13,15,0,12,4,4,1],"y":[108,101,100,86,81,58,54,30,16,16],"text":["🏎","🚙","🚗","🚕","🚛","🚜","🚐","🚓","🛵","🚌"],"type":"scatter","mode":"text","hovertext":["rpodcast","FrenchguyCH","Wimpy","bigcalm","TwoD","madhens","bigpod","TheUnwiseGeek","crendo","popey"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"key":["1","2","3","4","5","6","7","8","9","10"],"set":"SharedDatafa3ac8b3","marker":{"color":"rgba(31,119,180,1)","size":[30,30,30,30,30,30,30,30,30,30],"sizemode":"area","line":{"color":"rgba(31,119,180,1)"}},"textfont":{"size":30},"error_y":{"color":"rgba(31,119,180,1)","width":30},"error_x":{"color":"rgba(31,119,180,1)","width":30},"line":{"color":"rgba(31,119,180,1)","width":30},"xaxis":"x","yaxis":"y","_isNestedKey":false,"frame":null}],"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div style="float:right;width:52%">
+<div id="htmlwidget-abf38ffc9f9b9f1a335d" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-abf38ffc9f9b9f1a335d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"position_emo":["1st_place_medal","2nd_place_medal","3rd_place_medal","checkered_flag","checkered_flag","checkered_flag","checkered_flag","8ball","checkered_flag","checkered_flag"],"player_name":["rpodcast","FrenchguyCH","Wimpy","bigcalm","TwoD","madhens","bigpod","TheUnwiseGeek","crendo","popey"],"country":["us","ch","gb","gb","se","us","si","us","us","gb"],"url":["https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/us.svg","https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/ch.svg","https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/gb.svg","https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/gb.svg","https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/se.svg","https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/us.svg","https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/si.svg","https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/us.svg","https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/us.svg","https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/gb.svg"],"n_top3":[27,21,23,13,15,0,12,4,4,1],"total_points":[108,101,100,86,81,58,54,30,16,16],"avg_margin_victory":[0.765842149132176,0.935444434483846,0.958833336830139,"NaN",0.164333264033,"NaN","NaN",0.458000183105469,0.625,0.317000150680542],"avg_time_from_first":[1.35047499537468,2.00460000634193,2.89557502865791,4.12480002045631,4.31542500853539,8.31064003944397,4.09809526943025,3.61149993538857,3.41640005111694,1.9098749756813],"n_first_race":[19,9,6,0,3,0,0,1,1,1],"plot_emoji2":["🏎","🚙","🚗","🚕","🚛","🚜","🚐","🚓","🛵","🚌"]},"columns":[{"accessor":".selection","name":"","type":"NULL"},{"accessor":"position_emo","name":"","type":"character","cell":["🥇","🥈","🥉","🏁","🏁","🏁","🏁","🎱","🏁","🏁"],"width":30},{"accessor":"player_name","name":"Player","type":"character","width":160},{"accessor":"country","name":"country","type":"character","show":false},{"accessor":"url","name":"url","type":["glue","character"],"show":false},{"accessor":"n_top3","name":"n_top3","type":"numeric","show":false},{"accessor":"total_points","name":"Points","type":"numeric","width":100},{"accessor":"avg_margin_victory","name":"Avg Margin of Victory","type":"numeric","cell":["0.766 (19 wins)","0.935 (9 wins)","0.959 (6 wins)","No wins","0.164 (3 wins)","No wins","No wins","0.458 (1 win)","0.625 (1 win)","0.317 (1 win)"]},{"accessor":"avg_time_from_first","name":"avg_time_from_first","type":"numeric","show":false},{"accessor":"n_first_race","name":"n_first_race","type":"numeric","show":false},{"accessor":"plot_emoji2","name":"plot_emoji2","type":"character","show":false}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"selection":"multiple","onClick":"select","crosstalkKey":["1","2","3","4","5","6","7","8","9","10"],"crosstalkGroup":"SharedDatafa3ac8b3","dataKey":"91974f42ae99a8d4f44a54dcb21d6656","key":"91974f42ae99a8d4f44a54dcb21d6656"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+]
+
+.panel[.panel-name[Inside]
+
+```r
+library(crosstalk)
+library(reactable)
+library(plotly)
+library(htmltools)
+
+shared_df &lt;- SharedData$new(df)
+
+p1 &lt;- create_plot(shared_df, ...)
+t1 &lt;- create_reactable(shared_df, ...)
+
+div(
+  div(p1, style="float:left;width:46%"),
+  div(t1, style="float:right;width:52%")
+)
+```
 ]
 ]
 
@@ -284,12 +369,18 @@ fluidPage(
 
 ## The Destination is within reach!
 
-* Unlike the early days, comprehensive resources are now available to bring you closer to your Shiny Nirvana!
-* Even more resources ...
-    + Shiny App Stories [shiny.rstudio.com/app-stories](https://shiny.rstudio.com/app-stories/)
-    + Shiny Developer Series [shinydevseries.com](https://shinydevseries.com)
-    + 
+.pull-left[
+&lt;img src="assets/images/road_rainbow.jpg"&gt;
+]
 
+.pull-right[
+
+* Unlike the early days, comprehensive resources are now available to bring you closer to Shiny Nirvana!
+* Additional Resources
+    + [shiny.rstudio.com/app-stories](https://shiny.rstudio.com/app-stories/)
+    + [shinydevseries.com](https://shinydevseries.com)
+    + [hosting.analythium.io](https://hosting.analythium.io/)
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
