@@ -136,15 +136,11 @@ div.transbox h4 {
 ]
 ]
 
-
----
-name: introbkg
-class: center, middle
-
-
 ---
 name: hello
-template: introbkg
+background-image: url("assets/images/sky_background.jpg")
+background-position: center
+background-size: cover
 class: middle, center
 
 # .black[Hello!]
@@ -162,10 +158,13 @@ class: middle, center
 .link-box[
 [`r icons::fontawesome("github")` @rpodcast](https://github.com/rpodcast)  
 [`r icons::fontawesome("twitter")` @theRcast](https://twitter.com/thercast)  
-[`r icons::fontawesome("link")` r-podcast.org](https://r-podcast.org)  
-[`r icons::fontawesome("link")` shinydevseries.com](https://shinydevseries.com)  
+[`r icons::fontawesome("microphone")` r-podcast.org](https://r-podcast.org)  
+[`r icons::fontawesome("youtube")` ShinyDevSeries](https://youtube.com/shinydeveloperseries)  
 [`r icons::fontawesome("link")` rweekly.org](https://rweekly.org)  
+[`r icons::fontawesome("twitch")` rpodcast](https://twitch.tv/rpodcast)  
+[`r icons::fontawesome("discord")` streamRs](https://discord.gg/X9CGQ6dwxZ)
 ]
+
 
 ---
 class: middle, center
@@ -188,7 +187,7 @@ background-size: 70%
 # On the other side of the screen...
 
 .pull-left[
-<img src="assets/images/kevin-flynn-tron.jpg">
+<img src="assets/images/kevin-flynn-tron.jpg" style="width:450px;">
 ]
 
 .pull-right[
