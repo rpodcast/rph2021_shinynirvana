@@ -9,6 +9,13 @@
     ]
   },
   "Packages": {
+    "BH": {
+      "Package": "BH",
+      "Version": "1.75.0-0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "e4c04affc2cac20c8fec18385cd14691"
+    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-54",
@@ -223,6 +230,13 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "76147821cd3fcd8c4b04e1ef0498e7fb"
+    },
+    "httpgd": {
+      "Package": "httpgd",
+      "Version": "1.2.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "5879dba359512d89b0154648f32f0bbe"
     },
     "httpuv": {
       "Package": "httpuv",
@@ -480,6 +494,13 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "b227d13e29222b4574486cfcbde077fa"
+    },
+    "systemfonts": {
+      "Package": "systemfonts",
+      "Version": "1.0.3",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "5be9fcf8ef6763e8cb13ab009e273a1d"
     },
     "tibble": {
       "Package": "tibble",
